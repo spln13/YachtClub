@@ -13,8 +13,8 @@
     
 
     <!-- Bootstrap core CSS -->
-    <link href="../Static/CSS/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Static/CSS/signin.css">
+    <link href="../static/CSS/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/CSS/signin.css">
 
     <style>
       .bd-placeholder-img {
@@ -34,26 +34,36 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="login.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     
 <main class="form-signin">
   <form>
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please login</h1>
+{#    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">#}
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="username">
+      <input type="text" class="form-control" id="username" placeholder="username">
       <label for="floatingInput">User name</label>
     </div>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="email" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" id="password1" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
+      <label for="floatingPassword">Confirm Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" id="btn-signin" type="submit">Sign in</button>
   </form>
 </main>
+
+
+    
   </body>
 </html>
