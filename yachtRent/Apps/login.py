@@ -27,6 +27,7 @@ def login_verify(request):
     username = request_list['username']
     password = request_list['password']
     # TODO: 验证
+
     to_return = {
         'code': 1
     }

@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Signin Template · Bootstrap v5.1</title>
+    <title>Signin|Geek Yacht</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+    <script src="../static/JS/signin.js"></script>
 
-    
 
     <!-- Bootstrap core CSS -->
     <link href="../static/CSS/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,6 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     
@@ -51,6 +50,12 @@
       <input type="email" class="form-control" id="email" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
+    <label class="radio-inline" for="male">
+  <input type="radio" name="sex" id="inlineRadio1" value="male"> male
+</label>
+<label class="radio-inline" for="female">
+  <input type="radio" name="sex" id="inlineRadio2" value="female" checked="checked"> female
+</label>
     <div class="form-floating">
       <input type="password" class="form-control" id="password1" placeholder="Password">
       <label for="floatingPassword">Password</label>
@@ -59,7 +64,8 @@
       <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
       <label for="floatingPassword">Confirm Password</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" id="btn-signin" type="submit">Sign in</button>
+
+    <button class="w-100 btn btn-lg btn-primary" id="btn_signin" type="submit">Sign in</button>
   </form>
 </main>
 

@@ -19,10 +19,10 @@ from Apps import firstPage
 from Apps import login
 from Apps import register
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', firstPage.show_first_page),
-    path('login/', login.login),
+    path('login/',  login.login),
     path('login/verify/', login.login_verify),
+    path('register/', register.register),
 ]
