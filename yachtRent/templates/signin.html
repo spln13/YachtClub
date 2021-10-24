@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -17,59 +17,63 @@
     <link rel="stylesheet" href="../static/CSS/signin.css">
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
-      }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
-  </head>
-  <body class="text-center">
-    
+</head>
+<body class="text-center">
+
 <main class="form-signin">
-  <form>
-{#    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">#}
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <form>
+        {#    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">#}
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="username" placeholder="username">
-      <label for="floatingInput">User name</label>
-    </div>
-    <div class="form-floating">
-      <input type="email" class="form-control" id="email" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <label class="radio-inline" for="male">
-  <input type="radio" name="sex" id="inlineRadio1" value="male"> male
-</label>
-<label class="radio-inline" for="female">
-  <input type="radio" name="sex" id="inlineRadio2" value="female" checked="checked"> female
-</label>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="password1" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
-      <label for="floatingPassword">Confirm Password</label>
-    </div>
+        <div class="form-floating">
 
-    <button class="w-100 btn btn-lg btn-primary" id="btn_signin" type="submit">Sign in</button>
-  </form>
+            <label for="floatingInput">User name
+            <input type="text" class="form-control" id="username" placeholder="username">
+            </label>
+        </div>
+        <div class="form-floating">
+            <label for="floatingInput">Email address
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            </label>
+        </div>
+        <label class="radio-inline" for="male">
+            <input type="radio" name="sex" id="inlineRadio1" value="male"> male
+        </label>
+        <label class="radio-inline" for="female">
+            <input type="radio" name="sex" id="inlineRadio2" value="female" checked="checked"> female
+        </label>
+        <div class="form-floating">
+            <label for="floatingPassword">Password
+            <input type="password" class="form-control" id="password1" placeholder="Password">
+            </label>
+        </div>
+        <div class="form-floating">
+            <label for="floatingPassword">Confirm Password
+            <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
+            </label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" id="btn_signin" type="submit">Sign in</button>
+    </form>
 </main>
 
 
-    
-  </body>
+</body>
 </html>

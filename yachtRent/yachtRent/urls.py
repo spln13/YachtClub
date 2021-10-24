@@ -25,4 +25,6 @@ urlpatterns = [
     path('login/',  login.login),
     path('login/verify/', login.login_verify),
     path('register/', register.register),
+    path('register/check_username', register.check_username),
+    path('register/storage', register.storage),
 ]

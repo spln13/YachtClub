@@ -2,8 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from Apps import MysqlConnecter
 import json
-import datetime
-import time
 
 
 def login(request):
@@ -27,10 +25,22 @@ def login_verify(request):
     username = request_list['username']
     password = request_list['password']
     # TODO: 验证
+    result = MysqlConnecter.get_one('YachtClub', 'select password from userinfo where username = %s', [username])
+    if result is None:
+        to_return = {
+            'code': 2
+        }
+    else:
+        pwd = result['password']
+        if password == pwd:
+            to_return = {
+                'code': 0
+            }
+        else:
+            to_return = {
+                'code': 1
+            }
 
-    to_return = {
-        'code': 1
-    }
     to_return = json.dumps(to_return)
     response = JsonResponse(to_return, safe=False)
     return response
