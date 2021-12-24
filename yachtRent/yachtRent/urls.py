@@ -18,13 +18,15 @@ from django.urls import path
 from Apps import firstPage
 from Apps import login
 from Apps import register
+from Apps import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', firstPage.show_first_page),
     path('login/',  login.login),
-    path('login/verify/', login.login_verify),
-    path('register/', register.register),
-    path('register/check_username', register.check_username),
-    path('register/storage', register.storage),
+    path('api/login/verify/', login.login_verify),
+    path('signup/', register.register),
+    path('api/register/check_username', register.check_username),
+    path('api/register/storage', register.storage),
+    path('home/', home.home),
 ]

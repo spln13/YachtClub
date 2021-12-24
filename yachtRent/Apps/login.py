@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from Apps import MysqlConnecter
 import json
+from Apps import cookie
 
 
 def login(request):
@@ -43,4 +44,7 @@ def login_verify(request):
 
     to_return = json.dumps(to_return)
     response = JsonResponse(to_return, safe=False)
+    warrant = cookie.generateCookie()
+    response.set_cookie('warrant', warrant, max_age=3253600000)
+
     return response

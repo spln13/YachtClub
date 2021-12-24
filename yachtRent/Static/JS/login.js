@@ -13,7 +13,7 @@ window.onload = () => {
         }
         const dataToSend = {'username': username, 'password': password};
         const httpRequest = new XMLHttpRequest();
-        httpRequest.open('POST', '/login/verify/',false);
+        httpRequest.open('POST', '/api/login/verify/',false);
         httpRequest.send(JSON.stringify(dataToSend));
         const strReceive = String(httpRequest.response);
         const response = JSON.parse(JSON.parse(strReceive));

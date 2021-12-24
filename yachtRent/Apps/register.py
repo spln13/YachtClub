@@ -7,15 +7,15 @@ import json
 def register(request):
     """
     return signin.html
-    :param request:
-    :return:
+    :param request: None
+    :return: signin.html
     """
-    return render(request, "signin.html")
+    return render(request, "signup.html")
 
 
 def check_username(request):
     """
-    检查用户名是否重复
+    check whether username is unique
     :param request: {'username': username}
     :return: {'isExist': boolean}
     """
@@ -37,9 +37,9 @@ def check_username(request):
 
 
 def storage(request):
-    """x
-    :param request: {'username': username, 'password': password1, 'email': email, 'ismale': ismale}
-    :return:
+    """
+    :param request: {'username': username, 'password': password, 'email': email, 'ismale': ismale}
+    :return: None
     """
     request_list = json.loads(request.body)
     username = request_list['username']
@@ -49,6 +49,7 @@ def storage(request):
         gender = 'm'
     else:
         gender = 'f'
-    MysqlConnecter.modify('YachtClub', 'insert into userinfo (username, password, email, gender) '
-                                       'values(%s, %s, %s, %s)', [username, password, email, gender])
-
+    MysqlConnecter.modify('YachtClub', 'insert into userinfo (username, password, email) '
+                                       'values(%s, %s, %s)', [username, password, email])
+    MysqlConnecter.modify('YachtClub', 'insert into userdetial (username, gender) '
+                                       'value(%s, %s)', [username, gender])
