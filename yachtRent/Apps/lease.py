@@ -48,3 +48,11 @@ def lease(request):
     to_return = json.dumps(to_return)
     response = JsonResponse(to_return, safe=False)
     return response
+
+
+def returnYacht(request):
+    """
+    用户归还游艇
+    :param request: {''}
+    :return:
+    """
