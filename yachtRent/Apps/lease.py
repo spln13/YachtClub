@@ -39,12 +39,12 @@ def lease(request):
     yachtid = result['yachtid']
     time = datetime.datetime.now()
     detail = "租赁游艇"
-    recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
-    while MysqlConnecter.get_one('YachtClub', 'select * from records where recordid = %s', recordid) is not None:
-        recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
+    # recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
+    # while MysqlConnecter.get_one('YachtClub', 'select * from records where recordid = %s', recordid) is not None:
+    #     recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
     MysqlConnecter.modify('Yacht', 'delete from yachtinfo where yachtid = %s', yachtid)
-    MysqlConnecter.modify('Yacht', 'insert into records (username, recordid, time, detail, yachtid) '
-                                   'values(%s, %s, %s, %s, %s)', [username, recordid, time, detail, yachtid])
+    MysqlConnecter.modify('Yacht', 'insert into records (username, recordid, time, detail, yachtid, flag) '
+                                   'values(%s, %s, %s, %s, %s, %s)', [username, None, time, detail, yachtid, 'n'])
     to_return = json.dumps(to_return)
     response = JsonResponse(to_return, safe=False)
     return response

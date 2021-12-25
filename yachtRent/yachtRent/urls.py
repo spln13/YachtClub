@@ -34,4 +34,5 @@ urlpatterns = [
     path('api/register/storage', signup.storage),
     path('api/lease', lease.lease),
     path('api/yacht/query', yacht.getAllYacht),
+    path('api/yacht/getmyrent', yacht.getAllYacht)
 ]

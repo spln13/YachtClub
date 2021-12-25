@@ -75,3 +75,20 @@ def getAllYacht(request):
         return response(to_return)
     result = MysqlConnecter.get_all('YachtClub', 'select * from yachtinfo', [])
     return response(result)
+
+
+def getMyRent(request):
+    """
+    返回我租赁游艇的所有信息
+    :param
+    :return:
+    """
+    token = request.COOKIES.get('token')
+    result = MysqlConnecter.get_one('Yacht', 'select username from cookies where token = %s', token)
+    if result is None:
+        return response({'code': 0})
+    username = result['username']
+    result = MysqlConnecter.get_all('Yacht', 'select recordid, records.yachtid, yachtname, time, flag '
+                                             'from records, yachtinfo where records.yachtid = yachtinfo.yachtid '
+                                             'and username = %s', username)
+    return response(result)
