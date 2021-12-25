@@ -17,16 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from Apps import firstPage
 from Apps import login
-from Apps import register
+from Apps import signup
 from Apps import home
+from Apps import lease
+from Apps import yacht
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', firstPage.show_first_page),
+    path('admin/', admin.site.urls),
     path('login/',  login.login),
-    path('api/login/verify/', login.login_verify),
-    path('signup/', register.register),
-    path('api/register/check_username', register.check_username),
-    path('api/register/storage', register.storage),
     path('home/', home.home),
+    path('signup/', signup.register),
+    path('api/login/verify/', login.login_verify),
+    path('api/register/check_username', signup.check_username),
+    path('api/register/storage', signup.storage),
+    path('api/lease', lease.lease),
 ]

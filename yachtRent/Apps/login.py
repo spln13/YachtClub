@@ -27,6 +27,7 @@ def login_verify(request):
     password = request_list['password']
     # TODO: 验证
     result = MysqlConnecter.get_one('YachtClub', 'select password from userinfo where username = %s', [username])
+    is_success = False
     if result is None:
         to_return = {
             'code': 2
@@ -37,14 +38,16 @@ def login_verify(request):
             to_return = {
                 'code': 0
             }
+            is_success = True
         else:
             to_return = {
                 'code': 1
             }
-
+    print(to_return)
     to_return = json.dumps(to_return)
     response = JsonResponse(to_return, safe=False)
-    warrant = cookie.generateCookie()
-    response.set_cookie('warrant', warrant, max_age=3253600000)
-
+    if is_success:
+        token = cookie.generateCookie()
+        cookie.storageCookieInfo(username, token)
+        print(token)
     return response

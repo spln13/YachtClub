@@ -8,7 +8,7 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-size: cover;
+  background-size: auto;
   background: #f5f5f5 url("../IMG/home.jpg") no-repeat;
 }
 
