@@ -22,6 +22,7 @@ from Apps import home
 from Apps import lease
 from Apps import yacht
 
+
 urlpatterns = [
     path('', firstPage.show_first_page),
     path('admin/', admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
     path('api/register/check_username', signup.check_username),
     path('api/register/storage', signup.storage),
     path('api/lease', lease.lease),
+    path('api/yacht/query', yacht.getAllYacht),
 ]

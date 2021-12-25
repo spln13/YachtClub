@@ -61,8 +61,8 @@ def storage(request):
             "code": 0
         }
     try:
-        MysqlConnecter.modify('YachtClub', 'insert into userdetial (username, gender) '
-                                       'value(%s, %s)', [username, gender])
+        MysqlConnecter.modify('YachtClub', 'insert into userdetail (username, gender) '
+                                           'value(%s, %s)', [username, gender])
     except:
         to_return = {
             "code": 0

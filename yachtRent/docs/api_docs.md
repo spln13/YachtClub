@@ -1,7 +1,7 @@
 # 接口文档
 ### 0.用户登陆 - **post** `/api/login/verify`
-开发者: 李楠\
-接口说明: 验证登陆信息，登陆成功后生成令牌(token)\
+开发者: 李楠</br>
+接口说明: 验证登陆信息，登陆成功后生成令牌(token)</br>
 请求参数:
 ```json
 {
@@ -30,9 +30,9 @@
   "code": 2
 }
 ```
-### 1. 检查用户名 - **GET** `api/register/check_username`
-开发者: 李楠\
-接口说明: 检查用户名是否重复\
+### 1. 检查用户名 - **POST** `api/register/check_username`
+开发者: 李楠</br>
+接口说明: 检查用户名是否重复</br>
 请求参数:
 
 ```json
@@ -54,9 +54,9 @@
   "is_exist": "0"
 }
 ```
-### 2. 储存用户信息 - POST `api/register/storage`
-开发者: 李楠\
-接口说明: 将用户的信息储存\
+### 2. 储存用户信息 - **POST** `api/register/storage`
+开发者: 李楠</br>
+接口说明: 将用户的信息储存</br>
 请求参数:
 
 ```json
@@ -80,13 +80,12 @@
   "code": 0
 }
 ```
-### 3. 租赁游艇请求 - POST `api/lease`
-开发者: 李楠\
-接口说明：发出租赁游艇请求\
+### 3. 租赁游艇请求 - **POST** `api/lease`
+开发者: 李楠</br>
+接口说明: 发出租赁游艇请求</br>
 请求参数:
 ```json
 {
-  "username": "spln",
   "yachtname": "abc"
 }
 ```
@@ -97,7 +96,7 @@
   "code": 0
 }
 ```
- - 用户不匹配
+ - token不存在
 ```json
 {
   "code": 1
@@ -109,9 +108,42 @@
   "code": 2
 }
 ```
- - 用户余额不足
+### 4. 发布新游艇 - **POST** `api/yacht/publish`
+开发者: 李楠</br>
+接口说明: 管理员发布新游艇</br>
+请求参数:
 ```json
 {
-  "code": 3
+  "yachtname": "TATIANA",
+  "num": 3
 }
+```
+响应信息:
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+### 5. 获取所有游艇信息 - **GET** `api/yacht/query`
+开发者: 李楠</br>
+接口说明: 返回所有游艇信息</br>
+请求参数: `null`</br>
+响应信息:
+ - 操作失败
+```json
+[]
+```
+ - 查询成功
+```json
+[
+  {"yachtid": "abc1234", "yachtname": "TATIANA"},
+  {"yachtid": "abc1235", "yachtname": "CLARITY"}
+]
 ```
