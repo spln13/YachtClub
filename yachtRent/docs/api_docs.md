@@ -147,3 +147,20 @@
   {"yachtid": "abc1235", "yachtname": "CLARITY"}
 ]
 ```
+### 6. 获取个人租赁信息 - **GET** `api/yacht/getmyrent`
+开发者: 李楠</br>
+接口说明: 返回当前用户的租赁信息</br>
+请求参数`null`</br>
+响应操作:
+响应信息:
+ - 操作失败
+```json
+[]
+```
+ - 查询成功
+```json
+[
+  {"recordid": "1","yachtid": "12312", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "n"},
+  {"recordid": "2","yachtid": "12312", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "y"}
+]
+```
