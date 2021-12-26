@@ -85,3 +85,28 @@ def adminVerify(request):
                           [adminname, admin_token])
     return response({"code": 0})
 
+
+def userLogout(request):
+    """
+    用户请求退出登陆
+    :param request:
+    :return: {'code': code}
+    """
+    token = request.COOKIES.get('token')
+    if token is None:
+        return response({"code": 0})
+    MysqlConnector.modify('YachtClub', 'delete from cookies where token = %s', token)
+    return response({"code": 1})
+
+
+def adminLogout(request):
+    """
+    管理员请求退出登陆
+    :param request:
+    :return: {"code": code}
+    """
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return response({"code": 0})
+    MysqlConnector.modify('YachtClub', 'delete from admincookies where token = %s', token)
+    return response({"code": 1})

@@ -300,3 +300,35 @@
   "code": 2
 }
 ```
+### 13. 用户请求退出登陆 - **DELETE** `api/login/userlogout`
+接口说明: 用户请求退出登陆, 删除token</br>
+请求参数: `null`</br>
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
+### 14. 管理员请求退出登陆 - **DELETE** `api/login/adminlogout`
+接口说明: 管理员请求退出登陆, 删除token</br>
+请求参数: `null`</br>
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
