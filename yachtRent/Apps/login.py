@@ -3,6 +3,7 @@ from django.shortcuts import render
 from Apps import MysqlConnector
 import json
 from Apps import cookie
+from Apps.models import response
 
 
 def login(request):
@@ -14,7 +15,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def login_verify(request):
+def loginVerify(request):
     """
     :param request: {'username': username, 'password': password}
     :return: {'code': code}
@@ -51,3 +52,36 @@ def login_verify(request):
         cookie.storageCookieInfo(username, token)
         print(token)
     return response
+
+
+def adminLogin(request):
+    """
+    return a static html for admin logging
+    :param request:
+    :return:
+    """
+    return render(request, 'adminLogin.html')
+
+
+def adminVerify(request):
+    """
+    验证管理员的登陆信息
+    :param request: {'adminname': adminname, 'adminpwd': adminpwd}
+    :return: {"code": code}
+    {'code': 0} -> success
+    {'code': 1} -> password error
+    {'code': 2} -> user doesn't exist
+    """
+    request_list = json.loads(request.body)
+    adminname, adminpwd = request_list['adminname'], request_list['adminpwd']
+    result = MysqlConnector.get_one('YachtClub', 'select adminpwd from admininfo where adminname = %s', [adminname])
+    if result is None:
+        return response({"code": 2})
+    password = result['adminpwd']
+    if adminpwd != password:
+        return response({"code": 1})
+    admin_token = cookie.generateCookie()
+    MysqlConnector.modify('YachtClub', 'insert into admincookies (adminname, token) values (%s, %s)',
+                          [adminname, admin_token])
+    return response({"code": 0})
+

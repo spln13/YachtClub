@@ -30,7 +30,7 @@ urlpatterns = [
     path('login/',  login.login),
     path('home/', home.home),
     path('signup/', signup.register),
-    path('api/login/verify/', login.login_verify),
+    path('api/login/verify/', login.loginVerify),
     path('api/register/check_username', signup.check_username),
     path('api/register/storage', signup.storage),
     path('api/lease', lease.lease),
@@ -39,4 +39,5 @@ urlpatterns = [
     path('api/user/adduser', user.addUser),
     path('api/user/getalluser', user.getAllUser),
     path('api/lease/returnyacht', lease.returnYacht),
+    path('api/login/adminverify', login.adminVerify),
 ]
