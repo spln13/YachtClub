@@ -1,9 +1,7 @@
-from django.http import JsonResponse
-from Apps import MysqlConnecter
+from Apps import MysqlConnector
 import json
 import datetime
-import random
-import string
+from Apps.models import response
 
 
 def lease(request):
@@ -18,41 +16,46 @@ def lease(request):
     to_return = {
         "code": 0
     }
-    result = MysqlConnecter.get_one('YachtClub', 'select username from cookies where token = %s', token)
+    result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
     if result is None:
         to_return = {
             "code": 1  # 不匹配
         }
-        to_return = json.dumps(to_return)
-        response = JsonResponse(to_return, safe=False)
-        return response
+        return response(to_return)
     username = request_list['username']
-    result = MysqlConnecter.get_one('YachtClub', 'select yachtid from yachtinfo where yachtname = %s', yachtname)
+    result = MysqlConnector.get_one('YachtClub', 'select yachtid from yachtinfo where yachtname = %s '
+                                                 'and available = %s', [yachtname, 'y'])
     if result is None:
         # 没有船了
         to_return = {
             "code": 2  # 没有船
         }
-        to_return = json.dumps(to_return)
-        response = JsonResponse(to_return, safe=False)
-        return response
+        return response(to_return)
     yachtid = result['yachtid']
     time = datetime.datetime.now()
     detail = "租赁游艇"
     # recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
-    # while MysqlConnecter.get_one('YachtClub', 'select * from records where recordid = %s', recordid) is not None:
+    # while MysqlConnector.get_one('YachtClub', 'select * from records where recordid = %s', recordid) is not None:
     #     recordid = ''.join(random.sample(string.ascii_letters + string.digits, 30))
-    MysqlConnecter.modify('Yacht', 'delete from yachtinfo where yachtid = %s', yachtid)
-    MysqlConnecter.modify('Yacht', 'insert into records (username, recordid, time, detail, yachtid, flag) '
-                                   'values(%s, %s, %s, %s, %s, %s)', [username, None, time, detail, yachtid, 'n'])
-    to_return = json.dumps(to_return)
-    response = JsonResponse(to_return, safe=False)
-    return response
+    MysqlConnector.modify('YachtClub', 'update  yachtinfo set available = %s where yachtid = %s', ['n', yachtid])
+    MysqlConnector.modify('YachtClub', 'insert into records (username, recordid, time, detail, yachtid, flag) '
+                                       'values(%s, %s, %s, %s, %s, %s)', [username, None, time, detail, yachtid, 'n'])
+    return response(to_return)
 
 
 def returnYacht(request):
     """
     用户归还游艇
-    :param request: {''}
-    :return:
+    :param request: {'yachtid': "abc"}
+    :return: {'code': code}
     """
+    token = request.COOKIES.get('token')
+    result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
+    if result is None:
+        return response({"code": 0})
+    username = result['username']
+    result_list = json.loads(request.body)
+    yachtid = result_list['yachtid']
+    MysqlConnector.modify('YachtClub', 'update records set flag = %s where yachtid = %s and username = %s '
+                                       'and flag = %s', ['y', yachtid, username, 'n'])
+    response({"code": 1})

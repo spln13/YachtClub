@@ -44,14 +44,14 @@
  - 用户名已存在
 ```json
 {
-  "is_exist": "1"
+  "is_exist": 1
 }
 ```
 
  - 用户名不存在
 ```json
 {
-  "is_exist": "0"
+  "is_exist": 0
 }
 ```
 ### 2. 储存用户信息 - **POST** `api/register/storage`
@@ -108,7 +108,32 @@
   "code": 2
 }
 ```
-### 4. 发布新游艇 - **POST** `api/yacht/publish`
+
+### 4. 归还游艇 - **POST** `api/lease/returnyacht`
+开发者: 李楠</br>
+接口说明: 用户归还游艇</br>
+请求参数:
+```json
+{
+  "yachtid": "abc"
+}
+```
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
+
+
+### 5. 发布新游艇 - **POST** `api/yacht/publish`
 开发者: 李楠</br>
 接口说明: 管理员发布新游艇</br>
 请求参数:
@@ -131,7 +156,7 @@
   "code": 0
 }
 ```
-### 5. 获取所有游艇信息 - **GET** `api/yacht/query`
+### 6. 获取所有游艇信息 - **GET** `api/yacht/query`
 开发者: 李楠</br>
 接口说明: 返回所有游艇信息</br>
 请求参数: `null`</br>
@@ -147,13 +172,14 @@
   {"yachtid": "abc1235", "yachtname": "CLARITY"}
 ]
 ```
-### 6. 获取个人租赁信息 - **GET** `api/yacht/getmyrent`
+### 7. 获取个人租赁信息 - **GET** `api/yacht/getmyrentrecords`
 开发者: 李楠</br>
 接口说明: 返回当前用户的租赁信息</br>
 请求参数`null`</br>
 响应操作:
 响应信息:
  - 操作失败
+
 ```json
 []
 ```
@@ -163,4 +189,82 @@
   {"recordid": "1","yachtid": "12312", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "n"},
   {"recordid": "2","yachtid": "12312", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "y"}
 ]
+```
+### 8. 管理员新增加用户 - **POST** `api/user/adduser`
+开发者: 李楠</br>
+接口说明: 管理员添加新用户
+请求参数:
+```json
+{
+  "username": "spln",
+  "password": "123",
+  "email": "spln13@qq.com"
+}
+```
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
+### 9. 删除用户 - **POST** `api/user/deleteuser`
+开发者: 李楠</br>
+接口说明: 管理员删除用户</br>
+请求参数:
+```json
+{
+  "username": "spln"
+}
+```
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
+```
+### 10. 获取所有用户信息 - **GET** `api/user/getalluser`
+开发者: 李楠</br>
+接口说明: 管理员获取所有用户信息</br>
+请求参数: `null`</br>
+响应参数:
+ - 操作失败
+```json
+[]
+```
+ - 操作成功
+```json
+[
+  {"username": "spln13", "password": "123", "email": "spln13@qq.com"}
+]
+```
+### 11. 更新用户信息 - **GET** `api/user/updateuserinfo`
+开发者: 李楠</br>
+接口说明: 管理员更改用户信息</br>
+请求参数: `null`</br>
+响应信息:
+ - 操作失败
+```json
+{
+  "code": 0
+}
+```
+ - 操作成功
+```json
+{
+  "code": 1
+}
 ```

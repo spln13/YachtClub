@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from Apps import MysqlConnecter
+from Apps import MysqlConnector
 import json
 
 
@@ -21,14 +21,14 @@ def check_username(request):
     """
     request_list = json.loads(request.body)
     username = request_list['username']
-    result = MysqlConnecter.get_one('YachtClub', 'select * from userinfo where username = %s', [username])
+    result = MysqlConnector.get_one('YachtClub', 'select * from userinfo where username = %s', [username])
     if result is None:
         to_return = {
-            "isExist": '0'
+            "isExist": 0
         }
     else:
         to_return = {
-            "isExist": '1'
+            "isExist": 1
         }
     print(to_return)
     to_return = json.dumps(to_return)
@@ -54,14 +54,14 @@ def storage(request):
         "code": 1
     }
     try:
-        MysqlConnecter.modify('YachtClub', 'insert into userinfo (username, password, email) '
+        MysqlConnector.modify('YachtClub', 'insert into userinfo (username, password, email) '
                                            'values(%s, %s, %s)', [username, password, email])
     except:
         to_return = {
             "code": 0
         }
     try:
-        MysqlConnecter.modify('YachtClub', 'insert into userdetail (username, gender) '
+        MysqlConnector.modify('YachtClub', 'insert into userdetail (username, gender) '
                                            'value(%s, %s)', [username, gender])
     except:
         to_return = {

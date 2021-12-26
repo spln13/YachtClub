@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from Apps import MysqlConnecter
+from Apps import MysqlConnector
 import json
 from Apps import cookie
 
@@ -26,7 +26,7 @@ def login_verify(request):
     username = request_list['username']
     password = request_list['password']
     # TODO: 验证
-    result = MysqlConnecter.get_one('YachtClub', 'select password from userinfo where username = %s', [username])
+    result = MysqlConnector.get_one('YachtClub', 'select password from userinfo where username = %s', [username])
     is_success = False
     if result is None:
         to_return = {

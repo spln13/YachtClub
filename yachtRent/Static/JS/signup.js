@@ -46,7 +46,7 @@ window.onload = () => {
         }
         const response = sendDataAjax({'username': username}, '/api/register/check_username');
         const isExist = response['isExist'];
-        if (isExist === '1') {
+        if (isExist === 1) {
             alert('用户名已存在');
             return null;
         }

@@ -21,6 +21,7 @@ from Apps import signup
 from Apps import home
 from Apps import lease
 from Apps import yacht
+from Apps import user
 
 
 urlpatterns = [
@@ -34,5 +35,8 @@ urlpatterns = [
     path('api/register/storage', signup.storage),
     path('api/lease', lease.lease),
     path('api/yacht/query', yacht.getAllYacht),
-    path('api/yacht/getmyrent', yacht.getAllYacht)
+    path('api/yacht/getmyrentrecords', yacht.getMyRentRecords),
+    path('api/user/adduser', user.addUser),
+    path('api/user/getalluser', user.getAllUser),
+    path('api/lease/returnyacht', lease.returnYacht),
 ]

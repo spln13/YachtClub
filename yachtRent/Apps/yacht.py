@@ -1,4 +1,4 @@
-from Apps import MysqlConnecter
+from Apps import MysqlConnector
 import json
 import random
 import string
@@ -12,7 +12,7 @@ def publish(request):
     :return: {'code': code}
     """
     token = request.COOKIES.get('admintoken')
-    result = MysqlConnecter.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
     if result is None:
         to_return = {
             'code': 0
@@ -23,10 +23,10 @@ def publish(request):
     num = request_list['num']
     for _ in range(num):
         yachtid = ''.join(random.sample(string.ascii_letters + string.digits, 10))
-        while MysqlConnecter.get_one('YachtClub', 'select * from yachtinfo where yachtid = %s', yachtid) is not None:
+        while MysqlConnector.get_one('YachtClub', 'select * from yachtinfo where yachtid = %s', yachtid) is not None:
             yachtid = ''.join(random.sample(string.ascii_letters + string.digits, 10))
-        MysqlConnecter.modify('YachtClub', 'insert into yachtinfo (yachtid, yachtname) value(%s, %s)',
-                              [yachtid, yachtname])
+        MysqlConnector.modify('YachtClub', 'insert into yachtinfo (yachtid, yachtname, available) value(%s, %s, %s)',
+                              [yachtid, yachtname, 'y'])
     to_return = {
         'code': 1
     }
@@ -40,7 +40,7 @@ def delete(request):
     :return: {'code': code}
     """
     token = request.COOKIES.get('admintoken')
-    result = MysqlConnecter.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
     if result is None:
         to_return = {
             'code': 0
@@ -48,7 +48,7 @@ def delete(request):
         return response(to_return)
     request_list = json.loads(request.body)
     yachtid = request_list['yachtid']
-    MysqlConnecter.modify('Yacht', 'delete from yachtinfo where yachtid = %s', yachtid)
+    MysqlConnector.modify('Yacht', 'delete from yachtinfo where yachtid = %s', yachtid)
     to_return = {
         'code': 1
     }
@@ -63,32 +63,28 @@ def getAllYacht(request):
     """
     token = request.COOKIES.get('admintoken')
     if token is None:
-        to_return = {
-            'code': 0
-        }
+        to_return = []
         return response(to_return)
-    result = MysqlConnecter.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
     if result is None:
-        to_return = {
-            'code': 0
-        }
+        to_return = []
         return response(to_return)
-    result = MysqlConnecter.get_all('YachtClub', 'select * from yachtinfo', [])
+    result = MysqlConnector.get_all('YachtClub', 'select * from yachtinfo', [])
     return response(result)
 
 
-def getMyRent(request):
+def getMyRentRecords(request):
     """
     返回我租赁游艇的所有信息
     :param
     :return:
     """
     token = request.COOKIES.get('token')
-    result = MysqlConnecter.get_one('Yacht', 'select username from cookies where token = %s', token)
+    result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
     if result is None:
-        return response({'code': 0})
+        return response([])
     username = result['username']
-    result = MysqlConnecter.get_all('Yacht', 'select recordid, records.yachtid, yachtname, time, flag '
-                                             'from records, yachtinfo where records.yachtid = yachtinfo.yachtid '
-                                             'and username = %s', username)
+    result = MysqlConnector.get_all('YachtClub', 'select recordid, records.yachtid, yachtname, time, flag '
+                                                 'from records, yachtinfo where records.yachtid = yachtinfo.yachtid '
+                                                 'and username = %s', username)
     return response(result)
