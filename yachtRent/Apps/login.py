@@ -26,32 +26,18 @@ def loginVerify(request):
     request_list = json.loads(request.body)
     username = request_list['username']
     password = request_list['password']
-    # TODO: 验证
     result = MysqlConnector.get_one('YachtClub', 'select password from userinfo where username = %s', [username])
-    is_success = False
     if result is None:
-        to_return = {
-            'code': 2
-        }
-    else:
-        pwd = result['password']
-        if password == pwd:
-            to_return = {
-                'code': 0
-            }
-            is_success = True
-        else:
-            to_return = {
-                'code': 1
-            }
-    print(to_return)
-    to_return = json.dumps(to_return)
-    response = JsonResponse(to_return, safe=False)
-    if is_success:
-        token = cookie.generateCookie()
-        cookie.storageCookieInfo(username, token)
-        print(token)
-    return response
+        return response({"code": 2})
+    pwd = result['password']
+    if password != pwd:
+        return response({"code": 1})
+    to_return = json.dumps({"code": 0})
+    response1 = JsonResponse(to_return, safe=False)
+    token = cookie.generateCookie()
+    response1.set_cookie('token', token, 3600 * 24 * 14)
+    cookie.storageCookieInfo(username, token)
+    return response1
 
 
 def adminLogin(request):
@@ -83,7 +69,10 @@ def adminVerify(request):
     admin_token = cookie.generateCookie()
     MysqlConnector.modify('YachtClub', 'insert into admincookies (adminname, token) values (%s, %s)',
                           [adminname, admin_token])
-    return response({"code": 0})
+    to_return = json.dumps({"code": 0})
+    response1 = JsonResponse(to_return, safe=False)
+    response1.set_cookie('admintoken', admin_token, 3600 * 24 * 14)
+    return response1
 
 
 def userLogout(request):

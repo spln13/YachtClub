@@ -8,4 +8,4 @@ def home(requests):
     :param requests:
     :return: 返回index界面
     """
-    return render(requests, 'home.html')
+    return render(requests, 'index.html')
