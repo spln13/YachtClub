@@ -332,3 +332,35 @@
   "code": 1
 }
 ```
+### 15. 获取用户登陆状态 - **GET** `api/user/getusername`
+接口说明: 获取当前登陆的用户登陆状态以及用户名</br>
+请求参数: `null`</br>
+响应信息: 
+ - 无登陆状态
+```json
+{
+  "username": 0
+}
+```
+ - 登陆状态
+```json
+{
+  "username": "spln"
+}
+```
+### 15. 获取管理员登陆状态 - **GET** `api/user/getAdminname`
+接口说明: 获取当前登陆的管理员登陆状态以及管理员名</br>
+请求参数: `null`</br>
+响应信息: 
+ - 无登陆状态
+```json
+{
+  "adminname": 0
+}
+```
+ - 登陆状态
+```json
+{
+  "adminname": "spln"
+}
+```

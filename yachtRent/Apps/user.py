@@ -68,3 +68,34 @@ def getAllUser(request):
     result = MysqlConnector.get_all('YachtClub', 'select * from userinfo', [])
     return response(result)
 
+
+def getUsername(request):
+    """
+    获取当前登陆的用户登陆状态以及用户名
+    :param request:
+    :return: {"username": username}
+    """
+    token = request.COOKIES.get('token')
+    if token is None:
+        return response({"username": 0})
+    result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
+    if result is None:
+        return response({"username": 0})
+    username = result['username']
+    return response({"username": username})
+
+
+def getAdminname(request):
+    """
+    获取当前登陆管理员登陆状态以及管理员名
+    :param request:
+    :return: {"adminname": adminname}
+    """
+    admintoken = request.COOKIES.get("admintoken")
+    if admintoken is None:
+        return response({"adminname": 0})
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', admintoken)
+    if result is None:
+        return response({"adminname": 0})
+    adminname = result["adminname"]
+    return response({"adminname": adminname})
