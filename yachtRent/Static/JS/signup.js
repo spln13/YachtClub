@@ -79,6 +79,7 @@ window.onload = () => {
         const code = response2['code'];
         if (code === 1) {
             alert('注册成功');
+            window.location.href = "/login/";
         }
         else {
             alert('注册失败');

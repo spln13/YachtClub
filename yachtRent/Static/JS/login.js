@@ -20,6 +20,7 @@ window.onload = () => {
         const code = response['code'];
         if (code === 0) {
             alert('登录成功');
+            window.location.href = "/home/";
             return null;
         }
         else if (code === 1) {

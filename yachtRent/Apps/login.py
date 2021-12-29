@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from Apps import MysqlConnector
 import json
@@ -85,7 +86,9 @@ def userLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from cookies where token = %s', token)
-    return response({"code": 1})
+    response1 = HttpResponse("<script>location.href='/home/';</script>")
+    response1.delete_cookie('token')
+    return response1
 
 
 def adminLogout(request):
@@ -98,4 +101,6 @@ def adminLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from admincookies where token = %s', token)
-    return response({"code": 1})
+    response1 = HttpResponse("<script>location.href='/home/';</script>")
+    response1.delete_cookie('admintoken')
+    return response1
