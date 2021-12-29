@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+.nav {
+    display: block;
+    height: 50px;
+    line-height: 41px;
+    background-color: #030304;
+}
+
+.nav .left {
+    float: left;
+    /* display: inline-block; */
+    text-decoration: none;
+    color: #DDDDDD;
+    margin-top: 4px;
+    /* padding: 0 10px; */
+}
+
+.nav .right {
+    float: right;
+    /* display: inline-block; */
+    text-decoration: none;
+    color: #DDDDDD;
+    margin-right: 20px;
+}
+
+.nav ul li {
+    display: inline-block;
+    text-decoration: none;
+    color: #DDDDDD;
+    padding: 0 0;
+}
+
+.nav .right a {
+    display: inline-block;
+    text-decoration: none;
+    color: #DDDDDD;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.nav .left a {
+    display: inline-block;
+    text-decoration: none;
+    color: #DDDDDD;
+    padding: 0 50px;
+    font-size: 18px;
+}
+
+.nav a:hover {
+    background-color: gray;
+}
+
+.title {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.fleet {
+    margin-top: 20px;
+}
+
+.yacht {
+    background-color: black;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.fleet div {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    /*margin-bottom: 20px;*/
+}
+
+.fleet div img {
+    width: 442px;
+    height: 283px;
+}
+
+.ship {
+    width: 442px;
+    height: 320px;
+}
+
+.ship h1 {
+    color: whitesmoke;
+}

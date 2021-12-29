@@ -45,4 +45,6 @@ urlpatterns = [
     path('api/login/adminverify', login.adminVerify),
     path('api/login/userlogout', login.userLogout),
     path('api/login/adminlogout', login.adminLogout),
+    path('api/user/getusername', user.getUsername),
+    path('api/user/getadminname', user.getAdminname),
 ]
