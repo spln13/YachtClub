@@ -2,6 +2,25 @@ from Apps import MysqlConnector
 import json
 import datetime
 from Apps.models import response
+from django.shortcuts import render
+
+
+def lease_html(request):
+    """
+    返回lease.html
+    :param request:
+    :return:
+    """
+    return render(request, 'lease.html')
+
+
+def myrecord(request):
+    """
+    return myrecord
+    :param request:
+    :return:
+    """
+    return render(request, 'myrecord.html')
 
 
 def lease(request):
@@ -22,7 +41,7 @@ def lease(request):
             "code": 1  # 不匹配
         }
         return response(to_return)
-    username = request_list['username']
+    username = result['username']
     result = MysqlConnector.get_one('YachtClub', 'select yachtid from yachtinfo where yachtname = %s '
                                                  'and available = %s', [yachtname, 'y'])
     if result is None:

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Apps import MysqlConnector
 import json
 from Apps import cookie
@@ -50,6 +50,20 @@ def adminLogin(request):
     return render(request, 'adminLogin.html')
 
 
+def admin(request):
+    """
+    :param request:
+    :return:
+    """
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return redirect('/adminLogin/')
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    if result is None:
+        return redirect('/adminLogin/')
+    return render(request, 'admin.html')
+
+
 def adminVerify(request):
     """
     验证管理员的登陆信息
@@ -86,7 +100,7 @@ def userLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from cookies where token = %s', token)
-    response1 = HttpResponse("<script>location.href='/home/';</script>")
+    response1 = HttpResponse("<script>alert('登出成功');location.href='/home/';</script>")
     response1.delete_cookie('token')
     return response1
 
@@ -101,6 +115,6 @@ def adminLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from admincookies where token = %s', token)
-    response1 = HttpResponse("<script>location.href='/home/';</script>")
+    response1 = HttpResponse("<script>alert('登出成功');location.href='/home/';</script>")
     response1.delete_cookie('admintoken')
     return response1
