@@ -100,7 +100,7 @@ def userLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from cookies where token = %s', token)
-    response1 = HttpResponse("<script>alert('登出成功');location.href='/home/';</script>")
+    response1 = JsonResponse(json.dumps({"code": 1}), safe=False)
     response1.delete_cookie('token')
     return response1
 

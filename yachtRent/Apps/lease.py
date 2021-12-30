@@ -2,7 +2,8 @@ from Apps import MysqlConnector
 import json
 import datetime
 from Apps.models import response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+# from django.http import HttpResponse
 
 
 def lease_html(request):
@@ -11,6 +12,9 @@ def lease_html(request):
     :param request:
     :return:
     """
+    token = request.COOKIES.get('token')
+    if token is None:
+        return redirect('/login/')
     return render(request, 'lease.html')
 
 
@@ -20,6 +24,9 @@ def myrecord(request):
     :param request:
     :return:
     """
+    token = request.COOKIES.get('token')
+    if token is None:
+        return redirect('/login/')
     return render(request, 'myrecord.html')
 
 
@@ -77,4 +84,5 @@ def returnYacht(request):
     yachtid = result_list['yachtid']
     MysqlConnector.modify('YachtClub', 'update records set flag = %s where yachtid = %s and username = %s '
                                        'and flag = %s', ['y', yachtid, username, 'n'])
-    response({"code": 1})
+    MysqlConnector.modify('YachtClub', 'update yachtinfo set available = %s where yachtid = %s', ['y', yachtid])
+    return response({"code": 1})

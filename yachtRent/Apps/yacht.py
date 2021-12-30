@@ -87,4 +87,6 @@ def getMyRentRecords(request):
     result = MysqlConnector.get_all('YachtClub', 'select recordid, records.yachtid, yachtname, time, flag '
                                                  'from records, yachtinfo where records.yachtid = yachtinfo.yachtid '
                                                  'and username = %s', username)
+    for i in range(len(result)):
+        result[i]['time'] = result[i]['time'].strftime("%Y-%m-%d %H:%M:%S")
     return response(result)

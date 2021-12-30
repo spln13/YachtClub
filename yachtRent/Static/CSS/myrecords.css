@@ -1,0 +1,42 @@
+table {
+    font-family: verdana, arial, sans-serif;
+
+    font-size: 11px;
+
+    color: #333333;
+
+    border-width: 1px;
+
+    border-color: #666666;
+
+    border-collapse: collapse;
+
+    margin: 0 auto;
+
+}
+
+table th {
+    border-width: 1px;
+
+    padding: 8px;
+
+    border-style: solid;
+
+    border-color: #666666;
+
+    font-size: 1.125rem;
+
+}
+
+table td {
+    border-width: 1px;
+
+    padding: 8px;
+
+    border-style: solid;
+
+    border-color: #666666;
+
+    font-size: 1.125rem;
+
+}
