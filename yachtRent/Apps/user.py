@@ -1,6 +1,13 @@
 from Apps import MysqlConnector
 import json
+from django.shortcuts import render
 from Apps.models import response
+
+
+def addUserHTML(request):
+    token = request.COOKIES.get('admintokne')
+
+    return render(request, 'addUser.html')
 
 
 def addUser(request):

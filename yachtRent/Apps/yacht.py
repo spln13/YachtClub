@@ -3,6 +3,27 @@ import json
 import random
 import string
 from Apps.models import response
+from django.shortcuts import render, redirect
+
+
+def adminYachtHTML(request):
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return redirect('/adminLogin/')
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    if result is None:
+        return redirect('/adminLogin/')
+    return render(request, 'adminYacht.html')
+
+
+def addYachtHTML(request):
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return redirect('/adminLogin/')
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    if result is None:
+        return redirect('/adminLogin/')
+    return render(request, 'addYacht.html')
 
 
 def publish(request):
@@ -20,7 +41,7 @@ def publish(request):
         return response(to_return)
     request_list = json.loads(request.body)
     yachtname = request_list['yachtname']
-    num = request_list['num']
+    num = int(request_list['num'])
     for _ in range(num):
         yachtid = ''.join(random.sample(string.ascii_letters + string.digits, 10))
         while MysqlConnector.get_one('YachtClub', 'select * from yachtinfo where yachtid = %s', yachtid) is not None:
@@ -48,7 +69,7 @@ def delete(request):
         return response(to_return)
     request_list = json.loads(request.body)
     yachtid = request_list['yachtid']
-    MysqlConnector.modify('Yacht', 'delete from yachtinfo where yachtid = %s', yachtid)
+    MysqlConnector.modify('YachtClub', 'delete from yachtinfo where yachtid = %s', yachtid)
     to_return = {
         'code': 1
     }

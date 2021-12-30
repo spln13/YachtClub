@@ -15,7 +15,6 @@ window.onload = () => {
     const eml = document.querySelector('#email');
     const sex = document.getElementsByName('sex');
     btn_signin.addEventListener('click', function (e) {
-        e.preventDefault();
         const username = usn.value;
         const password1 = pwd1.value;
         const password2 = pwd2.value;
@@ -78,11 +77,11 @@ window.onload = () => {
         const response2 = JSON.parse(JSON.parse(strReceive));
         const code = response2['code'];
         if (code === 1) {
-            alert('注册成功');
-            window.location.href = "//login/";
+            alert('添加成功');
+            window.location.href = "/admin/";
         }
         else {
-            alert('注册失败');
+            alert('添加失败');
         }
     })
 }

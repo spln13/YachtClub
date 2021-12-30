@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from Apps import MysqlConnector
 import json
@@ -82,6 +82,7 @@ def adminVerify(request):
     if adminpwd != password:
         return response({"code": 1})
     admin_token = cookie.generateCookie()
+    MysqlConnector.modify('YachtClub', 'delete from admincookies where adminname = %s', adminname)
     MysqlConnector.modify('YachtClub', 'insert into admincookies (adminname, token) values (%s, %s)',
                           [adminname, admin_token])
     to_return = json.dumps({"code": 0})
@@ -115,6 +116,6 @@ def adminLogout(request):
     if token is None:
         return response({"code": 0})
     MysqlConnector.modify('YachtClub', 'delete from admincookies where token = %s', token)
-    response1 = HttpResponse("<script>alert('登出成功');location.href='/home/';</script>")
+    response1 = JsonResponse(json.dumps({"code": 1}), safe=False)
     response1.delete_cookie('admintoken')
     return response1
