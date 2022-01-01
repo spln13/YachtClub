@@ -15,6 +15,9 @@ def lease_html(request):
     token = request.COOKIES.get('token')
     if token is None:
         return redirect('/login/')
+    result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
+    if result is None:
+        return redirect('/login/')
     return render(request, 'lease.html')
 
 

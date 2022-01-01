@@ -2,7 +2,9 @@ html,
 body {
   height: 100%;
 }
-
+a {
+  color: white;
+}
 body {
   display: flex;
   align-items: center;

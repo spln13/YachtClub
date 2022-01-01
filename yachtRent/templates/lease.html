@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>租赁游艇</title>
     <script src="/static/JS/lease.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/CSS/lease.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -21,12 +24,17 @@
             width: 1000px;
             margin: 30px auto;
         }
+
+        #carouselExampleCaptions {
+            margin: 0 auto;
+            width: 83%;
+        }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
     <ul class="left">
-        <li><a href="">主页</a></li>
+        <li><a href="/home/">主页</a></li>
         <li><a href="/lease/">租赁游艇</a></li>
         <li><a href="/myrecords/">我的记录</a></li>
         <li><a href="/admin/">管理网站</a></li>
@@ -37,6 +45,116 @@
     </ul>
 </nav>
 <h1>租赁游艇</h1>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
+                aria-label="Slide 6"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6"
+                aria-label="Slide 7"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7"
+                aria-label="Slide 8"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/static/IMG/homeIMG/1tatiana.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>BILGIN 263 TATIANA</h2>
+                <p>Bilgin 263 yachts have sharp exterior lines and stylish interior areas offering a modern feeling. The
+                    extensive use of a contrasting combination of rich Macassar ebony, eucalyptus and plenty of marble
+                    creates a strong identity and luxurious feeling in the superyacht.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/3lilium.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>SNOW 5(ex.Lilium)</h2>
+                <p>Powered by twin 1.475hp MTU 12V2000 M72 diesel engines, Bilgin 156-II -also named Lilium- has a top
+                    speed of 16 knots and a maximum range in excess of 4.000 nautical miles at her cruising speed of 12
+                    knots. Her design features signed by the Istanbul-based designer office Unique Yacht Design and
+                    Bilgin Yacht Design Team are fresh and modern.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/2nerissa.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>STARTBURST III(ex.Nerissa)</h2>
+                <p>Bilgin Yacht's first 47.5-metre superyacht Bilgin 156, ex-Nerissa is as a result of a successful
+                    collaboration the Unique Yacht Design and H2 Yacht Design. Launched in July 2017, she is fitting
+                    with win MTU 12V 2000 diesel engines, which gives her a top speed of 16 knots and a maximum range in
+                    excess of 4.000 nautical miles at 12-knot cruising speed.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/3elada_1.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>ELADE</h2>
+                <p>In 2014, another H2-designed yacht 45 meter Elada took the stage with masculine design and the blue
+                    color. The tri-deck yacht features a beach club at the transom and an expansive bridge-deck terrace.
+                    The yacht’s most striking element, however, is the contrast between its modern, almost
+                    futuristic-looking exterior and its classic interior, which is filled with ribbed and scalloped
+                    woodwork.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/1timeless.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>TIMELESS</h2>
+                <p>A winner of the World Yachts Trophy in Cannes in 2012 in the category of “Best Custom Yacht Design up
+                    to 50-meter”. She is the first hull of the Bilgin Classic 160 series. The 49m yacht is a result of
+                    the sense of aesthetics of the glamorous 1920s.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/7dusur_1.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>DUSUR</h2>
+                <p>With the launch of 51.8 custom motoryacht Dusur in 2015, Bilgin Yacht was no longer a boutique
+                    company, but an internationally recognized superyacht builder from Turkey.
+                    Created on the drawing board of H2 Yacht Design, this displacement motoryacht has a bigger interior
+                    capacity than any of her kind.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/rl-noor-bilgin123-005.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>DUSUR</h2>
+                <p>RL Noor’s interior layout sleeps up to 8 guests in 4 rooms, including a master suite, 1 VIP stateroom
+                    and 2 twin cabins. She is also capable of carrying up to 6 crew onboard to ensure a relaxed luxury
+                    yacht experience. Timeless styling, beautiful furnishings and sumptuous seating feature throughout
+                    to create an elegant and comfortable atmosphere.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/IMG/homeIMG/Giaola-Lu.jpeg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h2>GIAOLA-LU</h2>
+                <p>Bilgin Yachts' experience in the shipbuilding has been recognized when the shipyard was listed among
+                    the top 20 builders in the world after the delivery of 46.80 metre Bilgin 155 (Giaola-Lu) in 2016.
+                    In 2017, Giaola-Lu turned to be a great success by being one of the finalists for the World
+                    Superyacht Awards and ShowBoat Design Awards.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 <div class="blank"></div>
 <div class="box">
     <select class="form-select" name="" id="yacht" aria-label="Default select example">

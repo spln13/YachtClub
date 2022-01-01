@@ -5,55 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Signin </title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
-
-    <!-- Bootstrap core CSS -->
     <script src="/static/JS/login.js"></script>
-    <!-- Bootstrap core CSS -->
-    <link href="/static/CSS/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/CSS/login.css">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        a {
-            color: wheat;
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
 </head>
 <body class="text-center">
 
 <main class="form-signin">
     <form>
-        {#    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">#}
         <h1 class="h3 mb-3 fw-normal">Please login</h1>
 
         <div class="form-floating">
             <label for="floatingInput">User name
-            <input type="text" class="form-control" id="username" placeholder="username">
+                <input type="text" class="form-control" id="username" placeholder="username">
             </label>
-
-
         </div>
-
         <div class="form-floating">
             <label for="floatingPassword">Password
-            <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password">
             </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" id="btn_login" type="submit">Login</button>

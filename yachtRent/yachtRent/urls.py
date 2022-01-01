@@ -36,7 +36,6 @@ urlpatterns = [
     path('adminYacht/', yacht.adminYachtHTML),
     path('addYacht/', yacht.publish),
     path('adminRecords/', yacht.adminRecords),
-    # path('addYachtHTML/', yacht.addYachtHTML),
     path('api/login/verify/', login.loginVerify),
     path('api/register/check_username', signup.check_username),
     path('api/register/storage', signup.storage),
