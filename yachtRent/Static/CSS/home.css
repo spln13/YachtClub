@@ -5,14 +5,7 @@
 a {
     text-decoration: none;
 }
-.nav {
-    display: block;
-    height: 50px;
-    line-height: 41px;
-    background-color: #030304;
-}
-
-.nav .left {
+nav .left {
     float: left;
     /* display: inline-block; */
     text-decoration: none;
@@ -21,7 +14,7 @@ a {
     /* padding: 0 10px; */
 }
 
-.nav .right {
+nav .right {
     float: right;
     /* display: inline-block; */
     text-decoration: none;
@@ -29,22 +22,29 @@ a {
     margin-right: 20px;
 }
 
-.nav ul li {
+nav ul li {
     display: inline-block;
     text-decoration: none;
     color: #DDDDDD;
     padding: 0 0;
 }
 
-.nav .right a {
+nav .right {
     display: inline-block;
     text-decoration: none;
     color: #DDDDDD;
     padding: 0 20px;
     font-size: 18px;
 }
+nav .right li {
+    display: inline-block;
+    text-decoration: none;
+    color: #DDDDDD;
+    padding: 0 20px;
+    font-size: 20px;
+}
 
-.nav .left a {
+nav .left a {
     display: inline-block;
     text-decoration: none;
     color: #DDDDDD;
@@ -52,9 +52,7 @@ a {
     font-size: 18px;
 }
 
-.nav a:hover {
-    background-color: gray;
-}
+
 
 .title {
     margin-top: 20px;

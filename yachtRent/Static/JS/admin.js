@@ -46,8 +46,7 @@ window.onload =() => {
     const response = JSON.parse(JSON.parse(strReceive));
     const adminname = response['adminname'];
     if (adminname !== 0) { // 登陆状态 修改右上角
-        document.getElementById("login").innerHTML = '<a href="">'+ adminname +'</a>'
-        document.getElementById("signup").innerHTML = '<a href="" onclick="logout()">登出</a>'
+        document.getElementById("adminname").innerHTML = '' + adminname;
     }
     const httpRequest1 = new XMLHttpRequest();
     httpRequest1.open('GET', '/api/user/getalluser', false);

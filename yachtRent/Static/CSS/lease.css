@@ -7,16 +7,13 @@ a {
 }
 nav .left {
     float: left;
-    /* display: inline-block; */
     text-decoration: none;
     color: #DDDDDD;
     margin-top: 4px;
-    /* padding: 0 10px; */
 }
 
 nav .right {
     float: right;
-    /* display: inline-block; */
     text-decoration: none;
     color: #DDDDDD;
     margin-right: 20px;
@@ -44,6 +41,7 @@ nav .left a {
     padding: 0 50px;
     font-size: 18px;
 }
+
 nav .right li {
     display: inline-block;
     text-decoration: none;
