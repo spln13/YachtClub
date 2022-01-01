@@ -1,12 +1,16 @@
 from Apps import MysqlConnector
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Apps.models import response
 
 
 def addUserHTML(request):
-    token = request.COOKIES.get('admintokne')
-
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return redirect('/adminLogin/')
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+    if result is None:
+        return redirect('/adminLogin/')
     return render(request, 'addUser.html')
 
 

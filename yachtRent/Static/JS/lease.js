@@ -1,4 +1,4 @@
-logout = () => {
+const logout = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/login/userlogout', false);
     httpRequest.send();

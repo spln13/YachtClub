@@ -4,6 +4,7 @@ import random
 import string
 from Apps.models import response
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 
 def adminYachtHTML(request):
@@ -16,14 +17,14 @@ def adminYachtHTML(request):
     return render(request, 'adminYacht.html')
 
 
-def addYachtHTML(request):
-    token = request.COOKIES.get('admintoken')
-    if token is None:
-        return redirect('/adminLogin/')
-    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
-    if result is None:
-        return redirect('/adminLogin/')
-    return render(request, 'addYacht.html')
+# def addYachtHTML(request):
+#     token = request.COOKIES.get('admintoken')
+#     if token is None:
+#         return redirect('/adminLogin/')
+#     result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token = %s', token)
+#     if result is None:
+#         return redirect('/adminLogin/')
+#     return render(request, 'addYacht.html')
 
 
 def publish(request):
@@ -101,13 +102,53 @@ def getMyRentRecords(request):
     :return:
     """
     token = request.COOKIES.get('token')
+    if token is None:
+        return response([])
     result = MysqlConnector.get_one('YachtClub', 'select username from cookies where token = %s', token)
     if result is None:
         return response([])
     username = result['username']
-    result = MysqlConnector.get_all('YachtClub', 'select recordid, records.yachtid, yachtname, time, flag '
+    result = MysqlConnector.get_all('YachtClub', 'select returnTime, recordid, records.yachtid, yachtname, time, flag '
                                                  'from records, yachtinfo where records.yachtid = yachtinfo.yachtid '
                                                  'and username = %s', username)
     for i in range(len(result)):
         result[i]['time'] = result[i]['time'].strftime("%Y-%m-%d %H:%M:%S")
+        if result[i]['returnTime']:
+            result[i]['returnTime'] = result[i]['returnTime'].strftime("%Y-%m-%d %H:%M:%S")
+    return response(result)
+
+
+def adminRecords(request):
+    """
+    管理租赁记录
+    :param request:
+    :return: html page
+    """
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return redirect('/adminLogin/')
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token=%s', token)
+    if result is None:
+        return redirect('/adminLogin/')
+    return render(request, 'adminRecords.html')
+
+
+def getAllRecords(request):
+    """
+    返回所有游艇租赁信息
+    :param request: None
+    :return:
+    """
+    token = request.COOKIES.get('admintoken')
+    if token is None:
+        return response([])
+    result = MysqlConnector.get_one('YachtClub', 'select adminname from admincookies where token=%s', token)
+    if result is None:
+        return response([])
+    result = MysqlConnector.get_all('YachtClub', 'select records.*, yachtname from records, yachtinfo '
+                                                 'where records.yachtid = yachtinfo.yachtid', [])
+    for i in range(len(result)):
+        result[i]['time'] = result[i]['time'].strftime("%Y-%m-%d %H:%M:%S")
+        if result[i]['returnTime']:
+            result[i]['returnTime'] = result[i]['returnTime'].strftime("%Y-%m-%d %H:%M:%S")
     return response(result)

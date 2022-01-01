@@ -1,4 +1,4 @@
-returnYacht = (yachtid) => {
+const returnYacht = (yachtid) => {
     let httpRequest = new XMLHttpRequest();
     httpRequest.open('POST', '/api/lease/returnyacht');
     const dataToSend = {"yachtid": yachtid};
@@ -13,7 +13,7 @@ returnYacht = (yachtid) => {
         alert("归还失败");
     }
 }
-logout = () => {
+const logout = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/login/userlogout', false);
     httpRequest.send();
@@ -28,16 +28,16 @@ logout = () => {
     }
 }
 
-createBox = (yachtid, yachtname, time, flag) => {
+const createBox = (yachtid, yachtname, time, returnTime,flag) => {
     let mother_box = document.querySelector('.records');
     let box = document.createElement('tr');
     mother_box.appendChild(box);
     if (flag === 'y') {
-        box.innerHTML ='<td>' + yachtid + '</td><td>' + yachtname + '</td><td>' + time + '</td><td>' + '已还</td>';
+        box.innerHTML ='<td>' + yachtid + '</td><td>' + yachtname + '</td><td>' + time + '</td><td>' + returnTime + '</td><td>' + '已还</td>';
     }
     else {
         box.innerHTML = '<td>' + yachtid + '</td><td>' + yachtname +
-                        '</td><td>' + time + '</td><td>' + '<a href="" id=' + yachtid + ' onclick="returnYacht(id)">点击归还</a></td>';
+                        '</td><td>' + time + '</td><td>' + returnTime + '</td><td><a href="" id=' + yachtid + ' onclick="returnYacht(id)">点击归还</a></td>';
     }
 }
 
@@ -62,7 +62,10 @@ window.onload = () => {
     strReceive = String(httpRequest.response);
     const records = JSON.parse(JSON.parse(strReceive))
     for (let i = 0; i < records.length; i++) {
-        createBox(records[i]['yachtid'], records[i]['yachtname'], records[i]['time'], records[i]['flag']);
+        if (records[i]['returnTime'] === null) {
+            records[i]['returnTime'] = "未还";
+        }
+        createBox(records[i]['yachtid'], records[i]['yachtname'], records[i]['time'], records[i]['returnTime'], records[i]['flag']);
     }
 
 }

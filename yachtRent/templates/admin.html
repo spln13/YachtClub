@@ -19,13 +19,15 @@
         <li><a href="/home/">主页</a></li>
         <li><a href="/admin/">管理用户</a></li>
         <li><a href="/adminYacht/">管理游艇</a></li>
-        <li><a href="/adminRecords/">管理记录</a></li>
+        <li><a href="/adminRecords/">租赁记录</a></li>
     </ul>
     <ul class="right" id="right">
         <li id="adminname"></li>
         <button type="button" onclick="logout()" class="btn btn-warning">登出</button>
     </ul>
 </nav>
+<h1>管理用户</h1>
+<button type="button" onclick="window.location.href='/addUser/'" class="btn btn-primary">添加用户</button>
 <table class="table table-hover">
     <thead>
     <tr>
@@ -33,7 +35,6 @@
         <th>密码</th>
         <th>email</th>
         <th>删除</th>
-        <th><a id="button" href="/addUser/">添加</a></th>
     </tr>
     </thead>
     <tbody class="userinfo" id="userinfo">

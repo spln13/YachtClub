@@ -10,7 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+        .blank {
+            display: inline-block;
+            height: 1px;
+            width: 180px;
+        }
+
         .box {
+            display: inline-block;
             width: 1000px;
             margin: 30px auto;
         }
@@ -30,14 +37,16 @@
     </ul>
 </nav>
 <h1>租赁游艇</h1>
+<div class="blank"></div>
 <div class="box">
     <select class="form-select" name="" id="yacht" aria-label="Default select example">
         <option value="">---请选择您的游艇---</option>
         <option value="tatiana">TATIANA</option>
-        <option value="snow5">SNOW5</option>
+        <option value="snow5">SNOW</option>
         <option value="starburst">STARBURST</option>
     </select>
-    <button type="button" id="btn" class="btn btn-dark">租赁</button>
 </div>
+<button type="button" id="btn" class="btn btn-dark">租赁</button>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-logout = () => {
+const logout = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/login/adminlogout', false);
     httpRequest.send();
@@ -7,13 +7,14 @@ logout = () => {
     const code = response['code'];
     if (code === 1) {
         alert('登出成功');
+        window.location.href = '/adminLogin/'
     }
     else {
         alert('登出失败');
     }
 }
 
-deleteUser = (username) => {
+const deleteUser = (username) => {
     const dataToSend = {"username": username};
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('POST', '/api/user/deleteuser');
@@ -30,7 +31,7 @@ deleteUser = (username) => {
 }
 
 
-createBox = (username, password, email) => {
+const createBox = (username, password, email) => {
     let mother_box = document.querySelector('.userinfo');
     let box = document.createElement('tr');
     mother_box.appendChild(box);

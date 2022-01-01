@@ -82,7 +82,8 @@ def returnYacht(request):
     username = result['username']
     result_list = json.loads(request.body)
     yachtid = result_list['yachtid']
-    MysqlConnector.modify('YachtClub', 'update records set flag = %s where yachtid = %s and username = %s '
-                                       'and flag = %s', ['y', yachtid, username, 'n'])
+    MysqlConnector.modify('YachtClub', 'update records set flag = %s, returnTime = %s where yachtid = %s '
+                                       'and username = %s and flag = %s',
+                                       ['y', datetime.datetime.now(), yachtid, username, 'n'])
     MysqlConnector.modify('YachtClub', 'update yachtinfo set available = %s where yachtid = %s', ['y', yachtid])
     return response({"code": 1})

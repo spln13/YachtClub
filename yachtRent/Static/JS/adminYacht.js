@@ -1,6 +1,8 @@
-addYacht = () => {
+const addYacht = () => {
     const yachtname = prompt('请输入要发布的游艇名');
+    if (!yachtname) return null;
     const num = prompt('请输入要发布的数量');
+    if (!num)   return null;
     const httpRequest = new XMLHttpRequest();
     const dataToSend = {"yachtname": yachtname, "num": num};
     httpRequest.open('POST', '/api/yacht/publish', false);
@@ -10,14 +12,13 @@ addYacht = () => {
     const code = response['code'];
     if (code === 1) {
         alert('添加成功');
-    }
-    else {
+    } else {
         alert('添加失败');
     }
 }
 
 
-logout = () => {
+const logout = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/login/adminlogout', false);
     httpRequest.send();
@@ -26,13 +27,13 @@ logout = () => {
     const code = response['code'];
     if (code === 1) {
         alert('登出成功');
-    }
-    else {
+        window.location.href = '/adminLogin/'
+    } else {
         alert('登出失败');
     }
 }
 
-deleteYacht = (yachtid) => {
+const deleteYacht = (yachtid) => {
     const dataToSend = {"yachtid": yachtid};
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('POST', '/api/yacht/delete');
@@ -42,21 +43,20 @@ deleteYacht = (yachtid) => {
     const code = response['code']
     if (code === 1) {
         alert('删除成功');
-    }
-    else {
+    } else {
         alert('删除失败');
     }
 }
 
-createBox = (yachtid, yachtname) => {
+const createBox = (yachtid, yachtname) => {
     let mother_box = document.querySelector('.yachtinfo');
     let box = document.createElement('tr');
     mother_box.appendChild(box);
-    box.innerHTML ='<td>' + yachtid + '</td><td>' + yachtname +
+    box.innerHTML = '<td>' + yachtid + '</td><td>' + yachtname +
         '</td><td><a href="" id=' + yachtid + ' onclick="deleteYacht(id)">删除</a></td>';
 }
 
-window.onload =() => {
+window.onload = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/user/getadminname', false);
     httpRequest.send();

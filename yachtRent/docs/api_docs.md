@@ -197,8 +197,7 @@
 ### 获取个人租赁信息 - **GET** `api/yacht/getmyrentrecords`
 开发者: 李楠</br>
 接口说明: 返回当前用户的租赁信息</br>
-请求参数`null`</br>
-响应操作:
+请求参数: `null`</br>
 响应信息:
  - 操作失败
 
@@ -212,6 +211,18 @@
   {"recordid": "2","yachtid": "12312", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "y"}
 ]
 ```
+### 管理员获取所有记录 - **GET** `api/yacht/getAllRecords`
+开发者: 李楠</br>
+接口说明: 返回所有用户的租赁信息</br>
+请求参数: `null` </br>
+响应信息:
+```json
+[
+  {"recordid": "1","yachtid": "12312", "username": "spln", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "n"},
+  {"recordid": "2","yachtid": "12313", "username": "spln13", "yachtname": "TATIANA", "time": "2019-2-10", "flag": "n"}
+]
+```
+
 ### 管理员新增加用户 - **POST** `api/user/adduser`
 开发者: 李楠</br>
 接口说明: 管理员添加新用户
