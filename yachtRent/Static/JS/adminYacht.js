@@ -12,6 +12,7 @@ const addYacht = () => {
     const code = response['code'];
     if (code === 1) {
         alert('添加成功');
+        window.location.href = '/adminYacht/';
     } else {
         alert('添加失败');
     }
@@ -48,11 +49,12 @@ const deleteYacht = (yachtid) => {
     }
 }
 
-const createBox = (yachtid, yachtname) => {
+const createBox = (yachtid, yachtname, flag) => {
+    flag = flag === 'y' ? '未租出' : '已租出';
     let mother_box = document.querySelector('.yachtinfo');
     let box = document.createElement('tr');
     mother_box.appendChild(box);
-    box.innerHTML = '<td>' + yachtid + '</td><td>' + yachtname +
+    box.innerHTML = '<td>' + yachtid + '</td><td>' + yachtname + '</td><td>' + flag +
         '</td><td><a href="" id=' + yachtid + ' onclick="deleteYacht(id)">删除</a></td>';
 }
 
@@ -73,6 +75,6 @@ window.onload = () => {
     const yachtinfo = JSON.parse(JSON.parse(strReceive1));
     console.log(yachtinfo);
     for (let i = 0; i < yachtinfo.length; i++) {
-        createBox(yachtinfo[i]["yachtid"], yachtinfo[i]["yachtname"]);
+        createBox(yachtinfo[i]["yachtid"], yachtinfo[i]["yachtname"], yachtinfo[i]['available']);
     }
 }
