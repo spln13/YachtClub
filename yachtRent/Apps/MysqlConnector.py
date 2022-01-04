@@ -33,6 +33,11 @@ def modify(database, sql, args):
 
 
 def dump(request):
+    token = request.COOKIES.get('admin_token')
+    if token is None:
+        return response({"code": 0})
+    if get_one('YachtClub', 'select adminname from admincookies where token = %s', token) is None:
+        return response({"code": 0})
     key = "spln13spln"
     path = "/Users/linan/Code/database"
     os.system("mysqldump -uroot -p%s YachtClub > %s.sql" % (key, path))
