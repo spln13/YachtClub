@@ -21,6 +21,7 @@ from Apps import home
 from Apps import lease
 from Apps import yacht
 from Apps import user
+from Apps import MysqlConnector
 
 
 urlpatterns = [
@@ -36,6 +37,7 @@ urlpatterns = [
     path('adminYacht/', yacht.adminYachtHTML),
     path('addYacht/', yacht.publish),
     path('adminRecords/', yacht.adminRecords),
+    path('api/dump', MysqlConnector.dump),
     path('api/login/verify/', login.loginVerify),
     path('api/register/check_username', signup.check_username),
     path('api/register/storage', signup.storage),

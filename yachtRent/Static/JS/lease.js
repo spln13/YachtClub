@@ -40,10 +40,16 @@ window.onload = () => {
         let yacht_map = {
             1: "TATIANA",
             2: "SNOW",
-            3: "STARBURST"
+            3: "STARBURST",
+            4: "ELADE",
+            5: "TIMELESS",
+            6: "DUSUR",
+            7: "RL NOLOR",
+            8: "GIAO-LU"
         }
         const httpRequest = new XMLHttpRequest();
         const dataToSend = {"yachtname": yacht_map[idx]}
+        // console.log(dataToSend);
         httpRequest.open('POST', '/api/lease/lease', false);
         httpRequest.send(JSON.stringify(dataToSend));
         const strReceive = String(httpRequest.response);

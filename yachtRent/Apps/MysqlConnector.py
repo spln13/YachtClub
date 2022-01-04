@@ -1,4 +1,6 @@
 import pymysql
+import os
+from Apps.models import response
 
 
 def get_all(database, sql, args):
@@ -28,3 +30,10 @@ def modify(database, sql, args):
     conn.commit()
     cursor.close()
     conn.close()
+
+
+def dump(request):
+    key = "spln13spln"
+    path = "/Users/linan/Code/database"
+    os.system("mysqldump -uroot -p%s YachtClub > %s.sql" % (key, path))
+    return response({"code": 1})

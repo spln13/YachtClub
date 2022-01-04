@@ -1,3 +1,17 @@
+const dump = () => {
+    const httpRequest2 = new XMLHttpRequest();
+    httpRequest2.open('GET', '/api/dump', false);
+    httpRequest2.send();
+    const strReceive2 = String(httpRequest2.response);
+    const response2 = JSON.parse(JSON.parse(strReceive2));
+    const code2 = response2['code'];
+    if (code2 === 1) {
+        alert('备份成功');
+    } else {
+        alert('备份失败');
+    }
+}
+
 const logout = () => {
     const httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', '/api/login/adminlogout', false);

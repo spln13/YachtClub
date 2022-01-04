@@ -21,25 +21,11 @@ window.onload = () => {
         const password2 = pwd2.value;
         const email = eml.value;
         const ismale = sex[0].checked;
-        /*
-         * 判断信息是否为空
-         * username 主键，判断是否唯一
-         * email 正则表达式判断是否合法
-         * 判断password1 是否合法 长度 是否含有特殊字符
-         * 判断password1和password2是否相等
-         */
         if (username === '' || password1 === '' || password2 === '' || email === '' || ismale === '') {
             // 有信息没有输入完全
             alert('请输入完整信息');
             return null;
         }
-        // let httpRequest = new XMLHttpRequest();
-        // httpRequest.open('POST', '/register/check_username', false);
-        // let dataToSend = {"username": username};
-        // console.log(dataToSend);
-        // httpRequest.send(JSON.stringify(dataToSend));
-        // let strReceive = String(httpRequest.response);
-        // let response = JSON.parse(JSON.parse(strReceive));
         if (username.length > 25) {
             alert('请输入短一点的用户名');
             return null
@@ -79,7 +65,7 @@ window.onload = () => {
         const code = response2['code'];
         if (code === 1) {
             alert('注册成功');
-            window.location.href = "//login/";
+            window.location.href = "/home/";
         }
         else {
             alert('注册失败');
